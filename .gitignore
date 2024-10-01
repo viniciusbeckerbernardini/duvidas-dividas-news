@@ -12,3 +12,4 @@
 ./rating/.env
 ./user/node_modules
 ./user/.env
+.idea
