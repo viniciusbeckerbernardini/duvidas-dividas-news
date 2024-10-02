@@ -19,11 +19,11 @@ class UserController {
           .send({ error: 'CPF or email has already registered' });
       }
 
-      const napiUser = new User(req.body);
+      const user = new User(req.body);
 
-      await napiUser.save();
+      await user.save();
 
-      return res.status(201).json(napiUser);
+      return res.status(201).json(user);
     } catch (err) {
       return res.status(500).send({ message: err.message });
     }
@@ -50,34 +50,6 @@ class UserController {
       return res.status(200).send({ token });
     } catch (error) {
       return res.status(500).send(error.message);
-    }
-  };
-
-  static listUsers = async (_req, res) => {
-    try {
-      const result = await User.find();
-      if (!result) {
-        return res.status(404).send({ error: 'No user were found' });
-      }
-
-      return res.status(200).send({ result });
-    } catch (error) {
-      return res.status(500).send({ message: 'Something went wrong' });
-    }
-  };
-
-  static removeUser = async (req, res) => {
-    const { id } = req.params;
-
-    try {
-      const result = await User.findByIdAndDelete(id);
-
-      if (!result) {
-        return res.status(404).send({ message: 'User not found' });
-      }
-      return res.status(204).send('ok');
-    } catch (error) {
-      return res.status(500).send({ message: error.message });
     }
   };
 }

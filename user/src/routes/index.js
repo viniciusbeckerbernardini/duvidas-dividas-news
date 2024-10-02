@@ -1,9 +1,7 @@
 import userRouter from './api/users.js';
-import pageRouter from './web/pages.js';
 
 const routers = {
-  userRouter,
-  pageRouter
+  userRouter
 };
 
 export default routers;

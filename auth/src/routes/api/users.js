@@ -9,7 +9,5 @@ const authenticateLocal = passport.authenticate('bearer', { session: false });
 
 userRouter
   .post('/create-user', UserController.createUser)
-  .get('/list-users', authenticateLocal, UserController.listUsers)
-  .delete('/remove-napi-user/:id', authenticateLocal, validId, UserController.removeUser)
   .post('/login', UserController.login);
 export default userRouter;
