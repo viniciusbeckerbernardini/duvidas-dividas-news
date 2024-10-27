@@ -1,30 +1,23 @@
 import mongoose from 'mongoose';
-import bcryptjs from 'bcryptjs';
 
-const UserSchema = new mongoose.Schema({
-  name: {
+const RatingSchema = new mongoose.Schema({
+  rating: {
+    type: Intl,
+  },
+  isbn: {
     type: String,
   },
-  email: {
+  userId: {
     type: String,
-    unique: true,
   },
-  password: {
+  comment: {
     type: String,
   },
   dateCreated: {
     type: Date,
     default: Date.now,
   },
-  cpf: {
-    type: String,
-    unique: true,
-  }
 });
 
-UserSchema.pre('save', async function encriptPassword(_next) {
-  this.password = await bcryptjs.hash(this.password, 10);
-});
-
-const User = mongoose.model('User', UserSchema);
-export default User;
+const Rating = mongoose.model('Rating', RatingSchema);
+export default Rating;

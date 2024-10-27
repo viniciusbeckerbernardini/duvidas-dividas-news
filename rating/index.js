@@ -19,9 +19,9 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(dirname, 'src/views'));
 
 // Api routes
-app.use('/api/user', routers.userRouter);
+app.use('/api/rating', routers.ratingsRouter);
 
-const port = process.env.PORT || 9001;
+const port = process.env.PORT || 9003;
 
 app.listen(port, () => {
   console.log(`Listening at port ${port}`);

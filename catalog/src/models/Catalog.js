@@ -1,30 +1,34 @@
 import mongoose from 'mongoose';
-import bcryptjs from 'bcryptjs';
 
-const UserSchema = new mongoose.Schema({
-  name: {
+const CatalogSchema = new mongoose.Schema({
+  ISBN: {
+    type: String,
+    unique: true
+  },
+  title: {
     type: String,
   },
-  email: {
+  authors: {
     type: String,
     unique: true,
   },
-  password: {
+  description: {
     type: String,
   },
-  dateCreated: {
-    type: Date,
+  categories: {
+    type: Array,
     default: Date.now,
   },
-  cpf: {
+  pageNumbers: {
+    type: String
+  },
+  publishDate: {
     type: String,
-    unique: true,
+  },
+  publisher: {
+    type: String,
   }
 });
 
-UserSchema.pre('save', async function encriptPassword(_next) {
-  this.password = await bcryptjs.hash(this.password, 10);
-});
-
-const User = mongoose.model('User', UserSchema);
-export default User;
+const Catalog = mongoose.model('catalog', CatalogSchema);
+export default Catalog;

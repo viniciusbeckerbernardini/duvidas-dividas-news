@@ -1,8 +1,7 @@
 import userRouter from './api/users.js';
 
 const routers = {
-  userRouter,
-  pageRouter
+  userRouter
 };
 
 export default routers;

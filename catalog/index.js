@@ -1,6 +1,5 @@
 import express from 'express';
 import dotenv from 'dotenv';
-import path from 'path';
 import cors from 'cors';
 import connectDataBase from './src/config/db.js';
 import routers from './src/routes/index.js';
@@ -13,7 +12,7 @@ app.use(cors());
 app.use(express.json());
 
 // Api routes
-app.use('/api/catalog', routers.userRouter);
+app.use('/api/catalog', routers.catalogRouter);
 
 const port = process.env.PORT || 9002;
 app.listen(port, () => {

@@ -1,67 +1,57 @@
 import bcryptjs from 'bcryptjs';
-import User from '../models/User.js';
+import Rating from '../models/Rating.js';
 import generateToken from '../helpers/generate-token.js';
 
-class UserController {
+class RatingController {
 
-  static getUser = async (req,res) => {
+  static get = async (req,res) => {
     try {
-      const {userId} = req.params;
+      const {isbn, userId} = req.params;
 
-      const { name, email, cpf } = await User.findOne({ id: userId });
+      const rating = await Rating.findOne({ id: userId, isbn: isbn });
 
-      return res.status(201).json({ user: {name, email, cpf } });
+      return res.status(201).json({ rating });
     } catch (err) {
       return res.status(500).send({ message: err.message });
     }
   }
-  static createUser = async (req, res) => {
+
+  static list = async (req,res) => {
     try {
-      const { cpf, email } = req.body;
+      const { isbn } = req.params;
+
+      const ratings = await Rating.find({ isbn: isbn });
+
+      return res.status(201).json({ ratings });
+    } catch (err) {
+      return res.status(500).send({ message: err.message });
+    }
+  }
+  static create = async (req, res) => {
+    try {
+      const { rating, isbn, comment } = req.body;
+      const { userId } = req.params;
 
       const query = {
-        $or: [{ cpf }, { email }],
+        $and: [{ userId }, { isbn }],
       };
 
-      const existingUser = await User.findOne(query);
+      const existingRating = await Rating.findOne(query);
 
-      if (existingUser) {
-        return res
-          .status(400)
-          .send({ error: 'CPF or email has already registered' });
+      if (existingRating) {
+        existingRating.update({rating:rating, comment:comment});
+        return res.status(201).json(existingRating);
       }
 
-      const user = new User(req.body);
+      const newRating = new Rating({rating:rating, comment:comment, isbn:isbn, userId:userId});
 
-      await user.save();
+      await newRating.save();
 
-      return res.status(201).json(user);
+      return res.status(201).json(newRating);
     } catch (err) {
       return res.status(500).send({ message: err.message });
     }
   };
-
-  static login = async (req, res) => {
-    const { email, password } = req.body;
-
-    try {
-      const user = await User.findOne({ email }).select('+password');
-
-      if (!user) {
-        return res.status(400).send({ message: 'Password or email invalid!' });
-      }
-
-      const matchPassword = await bcryptjs.compare(password, user.password);
-      if (!matchPassword) {
-        return res.status(400).send({ message: 'Password or email invalid!' });
-      }
-
-      const token = generateToken(user._id);
-      return res.status(200).send({ token:token, userId:user._id });
-    } catch (error) {
-      return res.status(500).send(error.message);
-    }
-  };
 }
 
-export default UserController;
+export default RatingController;

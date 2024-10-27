@@ -1,7 +1,6 @@
-import userRouter from './api/users.js';
-
+import ratingsRouter from "./api/ratings.js";
 const routers = {
-  userRouter
+  ratingsRouter
 };
 
 export default routers;

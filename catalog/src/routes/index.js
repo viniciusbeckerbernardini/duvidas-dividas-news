@@ -1,7 +1,7 @@
-import userRouter from './api/users.js';
+import catalogRouter from './api/catalog.js';
 
 const routers = {
-  userRouter
+  catalogRouter
 };
 
 export default routers;

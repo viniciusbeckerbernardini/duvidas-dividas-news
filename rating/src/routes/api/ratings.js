@@ -1,13 +1,13 @@
 import { Router } from 'express';
 import passport from 'passport';
-import UserController from '../../controllers/user.js';
 import '../../strategies/strategy-autentification.js';
+import RatingController from "../../controllers/rating.js";
 
-const userRouter = Router();
+const ratingsRouter = Router();
 const authenticateLocal = passport.authenticate('bearer', { session: false });
 
-userRouter
-  .post('/create-user', UserController.createUser)
-  .post('/login', UserController.login)
-  .get('/me',authenticateLocal,UserController.getUser);
-export default userRouter;
+ratingsRouter
+  .post('/create',authenticateLocal,RatingController.create)
+  .get('/list/:isbn', RatingController.list)
+  .get('/find/:isbn',authenticateLocal,RatingController.get);
+export default ratingsRouter;

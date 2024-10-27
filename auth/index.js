@@ -1,5 +1,4 @@
 import express from 'express';
-import session from 'express-session';
 import dotenv from 'dotenv';
 import path from 'path';
 import cors from 'cors';
@@ -13,12 +12,6 @@ dotenv.config();
 connectDataBase();
 
 const app = express();
-app.use(session({
-  secret: process.env.CHAVE_JWT,
-  resave: false,
-  saveUninitialized: true,
-  cookie: { secure: false },
-}));
 app.use(cors());
 app.use(express.json());
 app.use(express.static(path.join(dirname, 'public')));
@@ -27,10 +20,8 @@ app.set('views', path.join(dirname, 'src/views'));
 
 // Api routes
 app.use('/api/user', routers.userRouter);
-// Web routes
-app.use('/', routers.pageRouter);
 
-const port = process.env.PORT || 9003;
+const port = process.env.PORT || 9001;
 
 app.listen(port, () => {
   console.log(`Listening at port ${port}`);
