@@ -6,7 +6,7 @@ class UserController {
 
   static getUser = async (req,res) => {
     try {
-      const {userId} = req.params;
+      const {userId} = req.user;
 
       const { name, email, cpf } = await User.findOne({ id: userId });
 

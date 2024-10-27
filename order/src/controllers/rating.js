@@ -1,6 +1,4 @@
-import bcryptjs from 'bcryptjs';
 import Rating from '../models/Rating.js';
-import generateToken from '../helpers/generate-token.js';
 
 class RatingController {
 

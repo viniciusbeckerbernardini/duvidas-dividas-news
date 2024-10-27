@@ -16,7 +16,7 @@ app.use('/api/catalog', routers.catalogRouter);
 
 const port = process.env.PORT || 9002;
 app.listen(port, () => {
-  console.log(`Listening at port ${port}`);
+  console.log(`Catalog service: listening at port ${port}`);
 });
 
 export default app;

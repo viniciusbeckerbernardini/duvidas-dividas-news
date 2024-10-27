@@ -16,8 +16,11 @@ class CatalogController {
       const {isbn} = req.params;
 
       const book = await Catalog.findOne({ isbn: isbn });
+      if(book){
+        return res.status(201).json({book});
+      }
 
-      return res.status(201).json({book});
+      return res.status(404).send({ message: 'Book not found'});
     } catch (err) {
       return res.status(500).send({ message: err.message });
     }

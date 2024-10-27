@@ -27,6 +27,9 @@ const CatalogSchema = new mongoose.Schema({
   },
   publisher: {
     type: String,
+  },
+  price: {
+    type: Number,
   }
 });
 
