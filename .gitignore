@@ -1,15 +1,3 @@
-auth/node_modules
-auth/.env
-catalog/node_modules
-catalog/.env
-client/node_modules
-client/.env
-gateway/node_modules
-gateway/.env
-order/node_modules
-order/.env
-rating/node_modules
-rating/.env
-user/node_modules
-user/.env
+**/node_modules/
+**/.env
 .idea
