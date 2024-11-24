@@ -1,0 +1,28 @@
+<%- include('../templates/dashboard/header',{title:'Estudantes' })%>
+<%- include('../templates/dashboard/navbar')%>
+<div class="container mt-5">
+    <h1 class="title">
+        Compras
+    </h1>
+</div>
+<div class="container mt-5 content-box">
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">Número do pedido</th>
+                <th scope="col">Status</th>
+                <th scope="col">Preço</th>
+                <th scope="col">Método de pagamento</th>
+                <th scope="col">Data do pedido</th>
+                <th scope="col">Ações</th>
+                <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody id="orders">
+            </tbody>
+        </table>
+    </div>
+</div>
+<script src="/js/orders.js"></script>
+<%- include('../templates/dashboard/footer') %>

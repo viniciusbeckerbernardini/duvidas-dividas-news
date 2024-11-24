@@ -1,0 +1,198 @@
+//catalogs
+db.catalogs.drop();
+db.catalogs.insertMany([
+  {
+    isbn: "978-3-16-148410-0",
+    title: "Intro to MongoDB",
+    authors: "Jane Doe",
+    description: "A beginner's guide to MongoDB.",
+    categories: ["Database", "Programming"],
+    pageNumbers: "300",
+    publishDate: "2023-01-01",
+    publisher: "Tech Books Publishing",
+    price:100
+  },
+  {
+    isbn: "978-1-78-138210-1",
+    title: "Advanced Node.js",
+    authors: "John Smith",
+    description: "Deep dive into Node.js.",
+    categories: ["Programming", "Backend"],
+    pageNumbers: "450",
+    publishDate: "2022-10-15",
+    publisher: "Dev World Publishers",
+    price:100
+  },
+  {
+    isbn: "978-1-00-121350-2",
+    title: "Understanding APIs",
+    authors: "Alice Johnson",
+    description: "An overview of RESTful APIs.",
+    categories: ["Web Development", "API"],
+    pageNumbers: "320",
+    publishDate: "2021-05-21",
+    publisher: "API Publishers Inc.",
+    price:100
+  },
+  {
+    isbn: "978-1-23-456789-3",
+    title: "JavaScript Essentials",
+    authors: "Michael Brown",
+    description: "Mastering JavaScript basics.",
+    categories: ["Programming", "Frontend"],
+    pageNumbers: "380",
+    publishDate: "2020-08-12",
+    publisher: "Coding Books Co.",
+    price:100
+  },
+  {
+    isbn: "978-4-17-158920-4",
+    title: "CSS Design Patterns",
+    authors: "Emily White",
+    description: "Best practices in CSS.",
+    categories: ["Web Design", "CSS"],
+    pageNumbers: "275",
+    publishDate: "2023-07-30",
+    publisher: "Web Design Publishers",
+    price:100
+  }
+]);
+
+
+//Ratings
+db.ratings.drop();
+db.ratings.insertMany([
+  {
+    "rating": 4,
+    "isbn": "978-3-16-148410-0",
+    "userId": "671e741fcb79a1ef91e9d292",
+    "comment": "Excelente leitura para iniciantes!",
+    "dateCreated": "2023-10-15T10:00:00.000Z"
+  },
+  {
+    "rating": 5,
+    "isbn": "978-1-78-138210-1",
+    "userId": "a47e741fcb79a1ef91e9d293",
+    "comment": "Profundo e bem estruturado.",
+    "dateCreated": "2023-10-16T11:00:00.000Z"
+  },
+  {
+    "rating": 3,
+    "isbn": "978-1-00-121350-2",
+    "userId": "b38e741fcb79a1ef91e9d294",
+    "comment": "Informações úteis, mas poderia ser mais conciso.",
+    "dateCreated": "2023-10-17T12:00:00.000Z"
+  },
+  {
+    "rating": 4,
+    "isbn": "978-1-23-456789-3",
+    "userId": "c29e741fcb79a1ef91e9d295",
+    "comment": "Recomendo para quem quer aprender o básico!",
+    "dateCreated": "2023-10-18T13:00:00.000Z"
+  },
+  {
+    "rating": 2,
+    "isbn": "978-4-17-158920-4",
+    "userId": "d10e741fcb79a1ef91e9d296",
+    "comment": "Esperava mais detalhes avançados.",
+    "dateCreated": "2023-10-19T14:00:00.000Z"
+  }
+]);
+
+db.orders.drop();
+db.orders.insertMany([
+  {
+    "userId": "671e741fcb79a1ef91e9d292",
+    "products": [
+      { "isbn": "978-3-16-148410-0", "quantity": 2, "price": "15.99" },
+      { "isbn": "978-1-78-138210-1", "quantity": 1, "price": "25.50" }
+    ],
+    "status": "pending-payment",
+    "cost": "57.48",
+    "sendCost": "5.00",
+    "sendAddress": {
+      "street": "123 Main St",
+      "city": "Springfield",
+      "state": "IL",
+      "zip": "62701"
+    },
+    "paymentMethod": "credit card",
+    "dateCreated": "2023-10-15T10:00:00.000Z",
+    "dateUpdated": null
+  },
+  {
+    "userId": "671e741fcb79a1ef91e9d292",
+    "products": [
+      { "isbn": "978-1-00-121350-2", "quantity": 3, "price": "10.00" },
+      { "isbn": "978-1-23-456789-3", "quantity": 1, "price": "20.00" }
+    ],
+    "status": "pending-payment",
+    "cost": "50.00",
+    "sendCost": "7.00",
+    "sendAddress": {
+      "street": "456 Elm St",
+      "city": "Seattle",
+      "state": "WA",
+      "zip": "98101"
+    },
+    "paymentMethod": "paypal",
+    "dateCreated": "2023-10-16T11:00:00.000Z",
+    "dateUpdated": null
+  },
+  {
+    "userId": "671e741fcb79a1ef91e9d292",
+    "products": [
+      { "isbn": "978-4-17-158920-4", "quantity": 1, "price": "35.00" }
+    ],
+    "status": "pending-payment",
+    "cost": "35.00",
+    "sendCost": "8.50",
+    "sendAddress": {
+      "street": "789 Maple Ave",
+      "city": "Austin",
+      "state": "TX",
+      "zip": "73301"
+    },
+    "paymentMethod": "debit card",
+    "dateCreated": "2023-10-17T12:00:00.000Z",
+    "dateUpdated": null
+  },
+  {
+    "userId": "671e741fcb79a1ef91e9d292",
+    "products": [
+      { "isbn": "978-1-78-138210-1", "quantity": 2, "price": "25.50" },
+      { "isbn": "978-3-16-148410-0", "quantity": 1, "price": "15.99" }
+    ],
+    "status": "pending-payment",
+    "cost": "66.99",
+    "sendCost": "10.00",
+    "sendAddress": {
+      "street": "246 Oak St",
+      "city": "Denver",
+      "state": "CO",
+      "zip": "80201"
+    },
+    "paymentMethod": "bank transfer",
+    "dateCreated": "2023-10-18T13:00:00.000Z",
+    "dateUpdated": null
+  },
+  {
+    "userId": "671e741fcb79a1ef91e9d292",
+    "products": [
+      { "isbn": "978-1-00-121350-2", "quantity": 1, "price": "10.00" },
+      { "isbn": "978-4-17-158920-4", "quantity": 3, "price": "35.00" }
+    ],
+    "status": "pending-payment",
+    "cost": "115.00",
+    "sendCost": "9.00",
+    "sendAddress": {
+      "street": "369 Birch Blvd",
+      "city": "Miami",
+      "state": "FL",
+      "zip": "33101"
+    },
+    "paymentMethod": "credit card",
+    "dateCreated": "2023-10-19T14:00:00.000Z",
+    "dateUpdated": null
+  }
+]);

@@ -1,6 +1,7 @@
 import bcryptjs from 'bcryptjs';
 import Rating from '../models/Rating.js';
 import generateToken from '../helpers/generate-token.js';
+import User from "../models/User.js";
 
 class RatingController {
 
@@ -21,9 +22,21 @@ class RatingController {
     try {
       const { isbn } = req.params;
 
+
       const ratings = await Rating.find({ isbn: isbn });
 
-      return res.status(201).json({ ratings });
+      const ratingsWithUserNames = await Promise.all(
+          ratings.map(async (rating) => {
+            const userRating = await User.findOne({ _id: rating.userId });
+            const ratingWithUser = {
+              ...rating._doc,
+              userName: userRating?.name ?? 'Felipe Maia',
+            };
+            return ratingWithUser;
+          })
+      );
+
+      return res.status(201).json({ ratings: ratingsWithUserNames });
     } catch (err) {
       return res.status(500).send({ message: err.message });
     }

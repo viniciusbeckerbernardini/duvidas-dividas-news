@@ -1,0 +1,43 @@
+body {
+    background: #d1d1d1;
+}
+
+div#dashboard-navbar {
+    align-items: center;
+    justify-content: flex-end;
+}
+.footer {
+    text-align: center;
+    padding: 10px 0;
+    width: 100%;
+    bottom: 0;
+    background-color:#fff;
+    color:#000;
+}
+
+.fixed {
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}
+
+nav.navbar.navbar-expand-lg.navbar-dark {
+    background: #fff !important;
+    height:50px!important;
+}
+
+nav.navbar.navbar-expand-lg.navbar-dark  a {
+    color:#000 !important;
+}
+
+a.navbar-brand.mr-0.mr-md- img {
+    height: 100px !important;
+}
+
+.rating, .content-box  {
+    background: #fff;
+    width: 100%;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 20px;
+}

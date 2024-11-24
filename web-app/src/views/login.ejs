@@ -1,0 +1,19 @@
+<%- include('templates/header',{ title:'Login' })%>
+<div class="container">
+    <div class="card">
+        <form id="login-form" class="bg-light p-4 rounded shadow">
+            <img src="/img/header-dashboard.png" class="logo" alt="Logo">
+            <div class="form-group">
+                <input type="text" id="email" name="email" class="form-control" placeholder="e-mail" required>
+            </div>
+            <div class="form-group mb-3">
+                <input type="password" id="password" name="password" class="form-control" placeholder="senha" required>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-success form-control" id="btn-login">login</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<%- include('templates/footer') %>

@@ -1,0 +1,34 @@
+<%- include('../templates/dashboard/header',{title:'Detalhes Usuário' })%>
+<%- include('../templates/dashboard/navbar')%>
+<div class="container mt-5">
+    <h1 class="title">
+        Usuário
+    </h1>
+</div>
+<div class="container">
+    <div class="row mt-5 content-box">
+        <div class="col col-6">
+            <div class="col col-12">
+                <div class="row">
+                    <h5 class="title">
+                        Detalhes do Usuário
+                    </h5>
+                </div>
+            </div>
+            <div class="col col-12 mt-2">
+                <div class="row">
+                    <div id="user-details">
+                        <ul class="p-3">
+                            <li>Nome: </li>
+                            <li>E-mail: </li>
+                            <li>CPF: </li>
+                            <li>Telefone: </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/js/user.js"></script>
+<%- include('../templates/dashboard/footer') %>

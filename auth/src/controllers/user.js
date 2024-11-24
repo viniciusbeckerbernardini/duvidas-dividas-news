@@ -3,18 +3,18 @@ import User from '../models/User.js';
 import generateToken from '../helpers/generate-token.js';
 
 class UserController {
-
-  static getUser = async (req,res) => {
+  static getUser = async (req, res) => {
     try {
-      const {userId} = req.user;
+      const { userId } = req.user;
 
-      const { name, email, cpf } = await User.findOne({ id: userId });
+      const { name, email, cpf } = await User.findOne({ _id: userId });
 
-      return res.status(201).json({ user: {name, email, cpf } });
+      return res.status(201).json({ user: { name, email, cpf } });
     } catch (err) {
       return res.status(500).send({ message: err.message });
     }
-  }
+  };
+
   static createUser = async (req, res) => {
     try {
       const { cpf, email } = req.body;
@@ -57,7 +57,7 @@ class UserController {
       }
 
       const token = generateToken(user._id);
-      return res.status(200).send({ token:token, userId:user._id });
+      return res.status(200).send({ token, userId: user._id });
     } catch (error) {
       return res.status(500).send(error.message);
     }
