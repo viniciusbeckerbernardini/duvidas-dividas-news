@@ -63,7 +63,7 @@ class OrderController {
       const { userId } = req.user;
 
       const query = {
-        $and: [{ userId }, { id:orderId }],
+        $and: [{ userId }, { _id:orderId }],
       };
 
       const existingRating = await Order.findOneAndUpdate(query,{status:'delivered'});
@@ -85,7 +85,7 @@ class OrderController {
       const { userId } = req.user;
 
       const query = {
-        $and: [{ userId }, { id:orderId }],
+        $and: [{ userId }, { _id:orderId }],
       };
 
       const existingRating = await Order.findOneAndUpdate(query,{status:'canceled'});

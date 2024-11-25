@@ -31,6 +31,10 @@ function loadOrder(){
 function fillOrder(order){
     const orderDetails = document.getElementById('order-details');
     const productList = document.getElementById('products-list');
+    const orderControlPanel = document.getElementById('order-control-panel');
+    if(order.status !== 'delivered' && order.status !== 'canceled'){
+        orderControlPanel.style.display = 'block';
+    }
 
     orderDetails.innerHTML = `
        <p><strong>Número: ${order._id}</strong></p>
@@ -65,6 +69,8 @@ function getStatus(status){
             return "Entregue";
         case 'pending-payment':
             return "Pendente de pagamento";
+        case 'canceled':
+            return "Cancelado";
         default:
             return "Em processamento";
     }
@@ -87,6 +93,67 @@ function getPaymentMethod(paymentMethod){
 
 function getDeliveryAddress(address){
     return `${address.street}, ${address.city}, ${address.state}, CEP: ${address.zip}`
+}
+
+function cancelOrder(){
+    const url = window.location.href;
+    const segments = url.split('/');
+    const token = localStorage.getItem("token");
+
+    const orderId = segments[segments.length - 1];
+    fetch(`http://localhost:9004/api/orders/cancel-order`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+        },
+        body:JSON.stringify({orderId:orderId})
+    })
+        .then((response) => {
+            if (response.ok) {
+                return response.json()
+            } else {
+                throw new Error("Erro ao cancelar o pedido");
+            }
+        })
+        .then((data) => {
+            alert('Pedido cancelado!')
+            window.location.reload()
+        })
+        .catch((error) => {
+            alert(error.message);
+        });
+}
+
+function confirmDelivery(){
+    const url = window.location.href;
+    const segments = url.split('/');
+    const token = localStorage.getItem("token");
+
+    const orderId = segments[segments.length - 1];
+
+    fetch(`http://localhost:9004/api/orders/confirm-delivery`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+        },
+        body:JSON.stringify({orderId:orderId})
+    })
+        .then((response) => {
+            if (response.ok) {
+                return response.json()
+            } else {
+                throw new Error("Erro ao confirmar o pedido");
+            }
+        })
+        .then((data) => {
+            alert('Pedido confirmado!')
+            window.location.reload()
+        })
+        .catch((error) => {
+            alert(error.message);
+        });
 }
 
 

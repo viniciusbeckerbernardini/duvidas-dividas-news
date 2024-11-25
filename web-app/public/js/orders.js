@@ -33,7 +33,6 @@ function addOrder(order){
                 <td>${getPaymentMethod(order.paymentMethod)}</td>
                 <td>${new Date(order.dateCreated).toLocaleString('pt-BR')}</td>
                 <td><a class="btn btn-primary" href="/order/detail/${order._id}">Detalhes</a></td>
-                <td><a class="btn btn-success" href="/order/detail/${order._id}">Entregue</a></td>
              </tr>
   `;
 
@@ -45,6 +44,8 @@ function getStatus(status){
     switch (status) {
         case 'delivered':
             return "Entregue";
+        case 'canceled':
+            return "Cancelado";
         case 'pending-payment':
             return "Pendente de pagamento";
         default:
