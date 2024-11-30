@@ -15,10 +15,10 @@ app.use(express.json());
 // Api routes
 app.use('/api/carts', routers.cartsRouter);
 
-const port = process.env.PORT || 9004;
+const port = process.env.PORT || 9006;
 
 app.listen(port, () => {
-  console.log(`Order service: listening at port ${port}`);
+  console.log(`Carts service: listening at port ${port}`);
 });
 
 export default app;

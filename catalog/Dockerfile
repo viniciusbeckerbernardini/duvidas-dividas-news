@@ -9,7 +9,7 @@ COPY package*.json ./
 RUN npm install
 
 
-COPY ../.docker/catalog .
+COPY . .
 
 EXPOSE 9002
 

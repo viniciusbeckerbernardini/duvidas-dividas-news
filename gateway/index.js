@@ -25,7 +25,7 @@ app.use(cors());
 const port = process.env.PORT || 9007;
 
 //auth
-app.get('/api/user', (req, res, next) => authServiceProxy(req, res, next));
+app.get('/api/user/me', (req, res, next) => authServiceProxy(req, res, next));
 app.post('/api/user/login', (req, res, next) => authServiceProxy(req, res, next));
 app.post('/api/user/create-user', (req, res, next) => authServiceProxy(req, res, next));
 

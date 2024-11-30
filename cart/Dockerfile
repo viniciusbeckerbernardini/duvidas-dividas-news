@@ -9,7 +9,7 @@ COPY package*.json ./
 RUN npm install
 
 
-COPY ../.docker/cart .
+COPY . .
 
 EXPOSE 9006
 

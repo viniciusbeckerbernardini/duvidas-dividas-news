@@ -9,7 +9,7 @@ COPY package*.json ./
 RUN npm install
 
 
-COPY ../.docker/auth .
+COPY . .
 
 EXPOSE 9001
 

@@ -1,32 +1,60 @@
 version: '3'
 services:
   auth:
+    container_name: auth
     build:
       context: ./auth
     ports:
       - "9001:9001"
+    networks:
+      - duvidas_dividas_network
   cart:
+    container_name: cart
     build:
       context: ./cart
     ports:
       - "9006:9006"
+    networks:
+      - duvidas_dividas_network
   catalog:
+    container_name: catalog
     build:
       context: ./catalog
     ports:
       - "9002:9002"
+    networks:
+      - duvidas_dividas_network
   order:
+    container_name: order
     build:
       context: ./order
     ports:
       - "9004:9004"
+    networks:
+      - duvidas_dividas_network
   rating:
+    container_name: rating
     build:
       context: ./rating
     ports:
       - "9003:9003"
+    networks:
+      - duvidas_dividas_network
+  gateway:
+    container_name: gateway
+    build:
+      context: ./gateway
+    ports:
+      - "9007:9007"
+    networks:
+      - duvidas_dividas_network
   web-app:
+    container_name: webapp
     build:
       context: ./web-app
     ports:
       - "9005:9005"
+    networks:
+      - duvidas_dividas_network
+networks:
+  duvidas_dividas_network:
