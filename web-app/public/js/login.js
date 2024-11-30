@@ -51,7 +51,7 @@ function createAccount(event) {
       password === '' || password === undefined || password === null ||
       name === '' || name === undefined || name === null ||
       telephone === '' || telephone === undefined || telephone === null ||
-      cpf === '' || cpf === undefined || cpf === null ||
+      cpf === '' || cpf === undefined || cpf === null
   ){
     alert('Preencha todos os campos');
     return
