@@ -3,7 +3,6 @@ function loadProduct(){
   const segments = url.split('/');
   const isbn = segments[segments.length - 1];
 
-  console.log(isbn);
   fetch(`http://localhost:9002/api/catalog/find/${isbn}`, {
     method: 'GET',
     headers: {
@@ -49,13 +48,74 @@ function fillProduct(product){
 
 }
 
-function fillRatings(product){
+function addToCart(){
+  const url = window.location.href;
+  const segments = url.split('/');
+  const isbn = segments[segments.length - 1];
+  const token = localStorage.getItem("token");
 
+  const orderId = segments[segments.length - 1];
+
+  fetch(`http://localhost:9007/api/carts/add-product`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    },
+    body:JSON.stringify({product: {isbn:isbn}})
+  })
+      .then((response) => {
+        if (response.ok) {
+          return response.json()
+        } else {
+          throw new Error("Erro ao confirmar o pedido: Você precisa estar logado");
+        }
+      })
+      .then((data) => {
+        alert('Produto adicionado ao carrinho!')
+      })
+      .catch((error) => {
+        alert(error.message);
+      });
 }
 
-document.addEventListener("DOMContentLoaded", function() {
-  $('.carousel').carousel({
-    interval: 2000
+function addAndGoToCart(){
+  const url = window.location.href;
+  const segments = url.split('/');
+  const isbn = segments[segments.length - 1];
+  const token = localStorage.getItem("token");
+
+  const orderId = segments[segments.length - 1];
+
+  fetch(`http://localhost:9007/api/carts/add-product`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    },
+    body:JSON.stringify({product: {isbn:isbn}})
   })
-  loadProduct()
-});
+      .then((response) => {
+        if (response.ok) {
+          return response.json()
+        } else {
+          throw new Error("Erro ao confirmar o pedido: Você precisa estar logado");
+        }
+      })
+      .then((data) => {
+        window.location.href = '/cart';
+      })
+      .catch((error) => {
+        alert(error.message);
+      });
+}
+
+function calculateFreight(){
+    const cep = document.getElementById('input-cep').value;
+    const freightDiv = document.getElementById('freight-value');
+    if(cep.value === '' || cep.value === null){
+        alert('Informe o cep');
+        return;
+    }
+    freightDiv.style.display = 'block';
+}

@@ -86,6 +86,8 @@ function getPaymentMethod(paymentMethod){
             return "Transferência bancária";
         case 'boleto':
             return "Boleto bancário";
+        case 'pix':
+            return 'Pix';
         default:
             return "Em processamento";
     }

@@ -9,5 +9,6 @@ const authenticateLocal = passport.authenticate('bearer', { session: false });
 ordersRouter
     .post('/add-product',authenticateLocal,CartController.addProductCart)
     .post('/remove-product', authenticateLocal, CartController.removeProductCart)
+    .post('/clear', authenticateLocal, CartController.clearCart)
     .get('/get',authenticateLocal,CartController.get)
 export default ordersRouter;

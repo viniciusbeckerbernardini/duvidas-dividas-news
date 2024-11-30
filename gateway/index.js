@@ -30,11 +30,11 @@ app.post('/api/user/login', (req, res, next) => authServiceProxy(req, res, next)
 app.post('/api/user/create-user', (req, res, next) => authServiceProxy(req, res, next));
 
 //order
-app.post('/api/order/create', (req, res, next) => orderServiceProxy(req, res, next));
-app.get('/api/order/list', (req, res, next) => orderServiceProxy(req, res, next));
-app.get('/api/order/find/:orderId', (req, res, next) => orderServiceProxy(req, res, next));
-app.put('/api/order/confirm-delivery', (req, res, next) => orderServiceProxy(req, res, next));
-app.put('/api/order/cancel-order', (req, res, next) => orderServiceProxy(req, res, next));
+app.post('/api/orders/create', (req, res, next) => orderServiceProxy(req, res, next));
+app.get('/api/orders/list', (req, res, next) => orderServiceProxy(req, res, next));
+app.get('/api/orders/find/:orderId', (req, res, next) => orderServiceProxy(req, res, next));
+app.put('/api/orders/confirm-delivery', (req, res, next) => orderServiceProxy(req, res, next));
+app.put('/api/orders/cancel-order', (req, res, next) => orderServiceProxy(req, res, next));
 
 //rating
 app.get('/api/rating/list/:isbn', (req, res, next) => ratingServiceProxy(req, res, next));
@@ -50,6 +50,7 @@ app.get('/api/catalog/find/:isbn', (req, res, next) => catalogServiceProxy(req, 
 app.get('/api/carts/get', (req, res, next) => cartServiceProxy(req, res, next));
 app.post('/api/carts/add-product', (req, res, next) => cartServiceProxy(req, res, next));
 app.post('/api/carts/remove-product', (req, res, next) => cartServiceProxy(req, res, next));
+app.post('/api/carts/clear', (req, res, next) => cartServiceProxy(req, res, next));
 
 
 

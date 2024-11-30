@@ -1,7 +1,6 @@
 function verifyAuthenticated(){
   const isLogged = localStorage.getItem('isLogged');
 
-  console.log(isLogged)
   if(isLogged !== 'true'){
       const navbar = document.querySelector('.navbar-nav.navbar-right');
       navbar.innerHTML = `<a class="nav-item nav-link" href="/login">Login</a>`

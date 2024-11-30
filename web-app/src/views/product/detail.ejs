@@ -59,9 +59,9 @@
                             <div id="add-to-cart">
                                 <div class="row">
                                     <div class="col-12 mt-3">
-                                        <a type="button" href="/product/detail/${product.isbn}" class="btn btn-primary">
+                                        <button onclick="addToCart()" class="btn btn-primary">
                                             ADICIONAR AO CARRINHO
-                                        </a>
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -70,7 +70,7 @@
                             <div id="buy-product">
                                 <div class="row">
                                     <div class="col-12 mt-2">
-                                        <button class="btn btn-success">
+                                        <button onclick="addAndGoToCart()" class="btn btn-success">
                                             COMPRAR AGORA &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa-solid fa-cart-shopping fa-beat-fade"></i>
                                         </button>
                                     </div>
@@ -85,13 +85,26 @@
                                     </div>
                                     <div class="col-4">
                                         <div class="form-group">
-                                            <input type="text" placeholder="ex: 91140400" class="form-control">
+                                            <input type="text" id="input-cep" placeholder="ex: 91140400" class="form-control">
                                         </div>
                                     </div>
                                     <div class="col-2">
-                                        <button class="btn btn-primary">
+                                        <button class="btn btn-primary" onclick="calculateFreight()">
                                             <i class="fa-solid fa-search"></i>
                                         </button>
+                                    </div>
+                                </div>
+                                <div class="col-12 mt-4">
+                                    <hr>
+                                    <div id="freight-value" style="display: none">
+                                        <div class="row">
+                                            <div class="col-4">
+                                                Frete grátis
+                                            </div>
+                                            <div class="col-8">
+                                                4 a 6 dias úteis
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -130,4 +143,12 @@
 <script src="/js/product.js"></script>
 <script src="/js/catalog.js"></script>
 <script src="/js/rating.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        $('.carousel').carousel({
+            interval: 2000
+        })
+        loadProduct()
+    });
+</script>
 <%- include('../templates/dashboard/footer') %>

@@ -3,7 +3,6 @@ function loadRatings(){
     const segments = url.split('/');
     const isbn = segments[segments.length - 1];
 
-    console.log(isbn);
     fetch(`http://localhost:9003/api/rating/list/${isbn}`, {
         method: 'GET',
         headers: {

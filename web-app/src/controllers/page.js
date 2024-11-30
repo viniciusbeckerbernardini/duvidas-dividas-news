@@ -53,6 +53,16 @@ class PageController {
             },
         );
   };
+
+    static cart = async (req, res) => {
+        const routePath = req.route.path;
+        res.render(
+            'cart/index',
+            {
+                routePath
+            },
+        );
+    };
 }
 
 export default PageController;

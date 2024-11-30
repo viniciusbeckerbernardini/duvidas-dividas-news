@@ -24,7 +24,7 @@ pageRouter
     .get('/login', PageController.login)
     .get('/logout', logoutUser)
     .get('/product/detail/:id', PageController.productDetail)
-    .get('/cart', PageController.home)
+    .get('/cart', PageController.cart)
     .get('/account/me', PageController.me)
     .get('/account/orders', PageController.orders)
     .get('/order/detail/:id', PageController.orderDetail);
