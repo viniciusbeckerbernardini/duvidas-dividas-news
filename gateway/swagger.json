@@ -30,7 +30,7 @@
         "tags": [
           "auth"
         ],
-        "summary": "Realiza o login de um usuário",
+        "summary": "Login user",
         "requestBody": {
           "required": true,
           "content": {
@@ -87,10 +87,10 @@
         "tags": [
           "auth"
         ],
-        "summary": "Obtém as informações do usuário logado",
+        "summary": "Get user info",
         "responses": {
           "200": {
-            "description": "Informações do usuário",
+            "description": "User Info",
             "content": {
               "application/json": {
                 "schema": {
@@ -134,7 +134,7 @@
         "tags": [
           "auth"
         ],
-        "summary": "Cria um novo usuário",
+        "summary": "Create new user",
         "requestBody": {
           "required": true,
           "content": {
@@ -224,7 +224,7 @@
         "tags": [
           "cart"
         ],
-        "summary": "Retorna o carrinho do usuário",
+        "summary": "Return user's cart",
         "operationId": "getCart",
         "responses": {
           "200": {
@@ -269,7 +269,7 @@
         "tags": [
           "cart"
         ],
-        "summary": "Adiciona um produto ao carrinho",
+        "summary": "Add product to user's cart",
         "operationId": "addProductToCart",
         "requestBody": {
           "required": true,
@@ -305,7 +305,7 @@
         "tags": [
           "cart"
         ],
-        "summary": "Remove um produto do carrinho",
+        "summary": "Remove product from user's cart",
         "operationId": "removeProductFromCart",
         "parameters": [
           {
