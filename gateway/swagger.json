@@ -1,0 +1,395 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Dúvidas Dívidas News Api",
+    "version": "1.0.0",
+    "description": "API para microserviços de autenticação, pedidos, avaliação, catálogo e carrinho"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:9007"
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  },
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ],
+  "paths": {
+    "/api/user/login": {
+      "post": {
+        "summary": "Realiza o login de um usuário",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                },
+                "example": {
+                  "email": "vbkmma@gmail.com",
+                  "password": "12345"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Login realizado com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "token": {
+                      "type": "string"
+                    },
+                    "userId": {
+                      "type": "string"
+                    }
+                  },
+                  "example": {
+                    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MWU3NDFmY2I3OWExZWY5MWU5ZDI5MiIsImlhdCI6MTczMzAwNTU4NiwiZXhwIjoxNzMzMDkyMDQ2fQ.8Iwd7q0Bwvs2dfte20nFtCLlFE0Srr4XBkeEmTt5a_U",
+                    "userId": "671e741fcb79a1ef91e9d292"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erro crítico"
+          }
+        }
+      }
+    },
+    "/api/user/me": {
+      "get": {
+        "summary": "Obtém as informações do usuário logado",
+        "responses": {
+          "200": {
+            "description": "Informações do usuário",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "user": {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string"
+                        },
+                        "email": {
+                          "type": "string"
+                        },
+                        "cpf": {
+                          "type": "string"
+                        }
+                      },
+                      "example": {
+                        "name": "Vini",
+                        "email": "vbkmma@gmail.com",
+                        "cpf": "4114107940"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erro crítico"
+          },
+          "404": {
+            "description": "Usuário não encontrado"
+          }
+        }
+      }
+    },
+    "/api/user/create-user": {
+      "post": {
+        "summary": "Cria um novo usuário",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  },
+                  "telephone": {
+                    "type": "string"
+                  },
+                  "cpf": {
+                    "type": "string"
+                  }
+                },
+                "example": {
+                  "name": "Testexxx",
+                  "email": "vbkmma2@gmail.com",
+                  "password": "12345",
+                  "telephone": "1234567896",
+                  "cpf": "4114107942"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Usuário criado com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    },
+                    "email": {
+                      "type": "string"
+                    },
+                    "password": {
+                      "type": "string"
+                    },
+                    "cpf": {
+                      "type": "string"
+                    },
+                    "_id": {
+                      "type": "string"
+                    },
+                    "dateCreated": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "__v": {
+                      "type": "integer"
+                    }
+                  },
+                  "example": {
+                    "name": "Testexxx",
+                    "email": "vbkmma2@gmail.com",
+                    "password": "$2a$10$H/YfBQ6bbKvmw75NdBxkyOKdzKM0beXZqXox4lOi7.5NrQD0DF1wq",
+                    "cpf": "4114107942",
+                    "_id": "674b926036d9f77e5496ae08",
+                    "dateCreated": "2024-11-30T22:32:00.659Z",
+                    "__v": 0
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erro crítico"
+          }
+        }
+      }
+    },
+    "/api/orders/create": {
+      "post": {
+        "summary": "Cria um novo pedido",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "products": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "isbn": {
+                          "type": "string"
+                        },
+                        "quantity": {
+                          "type": "integer"
+                        },
+                        "price": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  "cost": {
+                    "type": "string"
+                  },
+                  "sendCost": {
+                    "type": "string"
+                  },
+                  "sendAddress": {
+                    "type": "object",
+                    "properties": {
+                      "street": {
+                        "type": "string"
+                      },
+                      "city": {
+                        "type": "string"
+                      },
+                      "state": {
+                        "type": "string"
+                      },
+                      "zip": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "paymentMethod": {
+                    "type": "string"
+                  }
+                },
+                "example": {
+                  "products": [
+                    { "isbn": "978-1-00-121350-2", "quantity": 1, "price": "100.00" },
+                    { "isbn": "978-4-17-158920-4", "quantity": 3, "price": "350.00" }
+                  ],
+                  "cost": "115.00",
+                  "sendCost": "9.00",
+                  "sendAddress": {
+                    "street": "rua rio solimões",
+                    "city": "Guarapari",
+                    "state": "SC",
+                    "zip": "95577441"
+                  },
+                  "paymentMethod": "boleto"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Pedido criado com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "products": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "isbn": {
+                            "type": "string"
+                          },
+                          "quantity": {
+                            "type": "integer"
+                          },
+                          "price": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    },
+                    "cost": {
+                      "type": "string"
+                    },
+                    "sendCost": {
+                      "type": "string"
+                    },
+                    "sendAddress": {
+                      "type": "object",
+                      "properties": {
+                        "street": {
+                          "type": "string"
+                        },
+                        "city": {
+                          "type": "string"
+                        },
+                        "state": {
+                          "type": "string"
+                        },
+                        "zip": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "paymentMethod": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erro crítico"
+          }
+        }
+      }
+    },
+    "/api/orders/{orderId}": {
+      "get": {
+        "summary": "Obtém detalhes de um pedido",
+        "parameters": [
+          {
+            "name": "orderId",
+            "in": "path",
+            "required": true,
+            "description": "ID do pedido",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Detalhes do pedido",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "orderId": {
+                      "type": "string"
+                    },
+                    "status": {
+                      "type": "string"
+                    }
+                  },
+                  "example": {
+                    "orderId": "60d5f821d47b33a5c1bd5d6f",
+                    "status": "Em processamento"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erro crítico"
+          },
+          "404": {
+            "description": "Pedido não encontrado"
+          }
+        }
+      }
+    }
+  }
+}

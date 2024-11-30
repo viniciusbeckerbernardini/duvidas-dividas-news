@@ -1,11 +1,12 @@
 import express from 'express';
+import swaggerUi from 'swagger-ui-express';
 import dotenv from 'dotenv';
 import cors from 'cors';
 import httpProxy from 'express-http-proxy'
 dotenv.config();
 
 import hosts from './services-hosts.js';
-
+import swaggerDocument from './swagger.json' with { type: "json" };
 const {
   auth_api_url,
   catalog_api_url,
@@ -23,6 +24,9 @@ const app = express();
 app.use(cors());
 
 const port = process.env.PORT || 9007;
+
+app.use('/api-docs', swaggerUi.serve);
+app.get('/api-docs', swaggerUi.setup(swaggerDocument));
 
 //auth
 app.get('/api/user/me', (req, res, next) => authServiceProxy(req, res, next));
