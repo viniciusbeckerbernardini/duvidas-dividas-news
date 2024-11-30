@@ -3,7 +3,7 @@ function loadProduct(){
   const segments = url.split('/');
   const isbn = segments[segments.length - 1];
 
-  fetch(`http://localhost:9002/api/catalog/find/${isbn}`, {
+  fetch(`http://localhost:9007/api/catalog/find/${isbn}`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',

@@ -4,7 +4,7 @@ function loadOrder(){
     const token = localStorage.getItem("token");
 
     const order = segments[segments.length - 1];
-    fetch(`http://localhost:9004/api/orders/find/${order}`, {
+    fetch(`http://localhost:9007/api/orders/find/${order}`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
@@ -103,7 +103,7 @@ function cancelOrder(){
     const token = localStorage.getItem("token");
 
     const orderId = segments[segments.length - 1];
-    fetch(`http://localhost:9004/api/orders/cancel-order`, {
+    fetch(`http://localhost:9007/api/orders/cancel-order`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
@@ -134,7 +134,7 @@ function confirmDelivery(){
 
     const orderId = segments[segments.length - 1];
 
-    fetch(`http://localhost:9004/api/orders/confirm-delivery`, {
+    fetch(`http://localhost:9007/api/orders/confirm-delivery`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',

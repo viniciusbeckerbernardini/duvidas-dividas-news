@@ -1,6 +1,6 @@
 function loadUser(){
     const token = localStorage.getItem("token");
-    fetch(`http://localhost:9001/api/user/me`, {
+    fetch(`http://localhost:9007/api/user/me`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',

@@ -3,7 +3,7 @@ function loadRatings(){
     const segments = url.split('/');
     const isbn = segments[segments.length - 1];
 
-    fetch(`http://localhost:9003/api/rating/list/${isbn}`, {
+    fetch(`http://localhost:9007/api/rating/list/${isbn}`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
