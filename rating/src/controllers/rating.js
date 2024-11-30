@@ -10,7 +10,7 @@ class RatingController {
       const {isbn} = req.params;
       const {userId} = req.user;
 
-      const rating = await Rating.findOne({ id: userId, isbn: isbn });
+      const rating = await Rating.findOne({ userId: userId, isbn: isbn });
 
       return res.status(201).json({ rating });
     } catch (err) {

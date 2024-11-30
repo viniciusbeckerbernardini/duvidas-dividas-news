@@ -18,6 +18,8 @@ services:
     container_name: auth
     build:
       context: ./auth
+    volumes:
+      - ./auth:/usr/src/app
     ports:
       - "9001:9001"
     networks:
@@ -26,6 +28,8 @@ services:
     container_name: cart
     build:
       context: ./cart
+    volumes:
+      - ./cart:/usr/src/app
     ports:
       - "9006:9006"
     networks:
@@ -34,6 +38,8 @@ services:
     container_name: catalog
     build:
       context: ./catalog
+    volumes:
+      - ./catalog:/usr/src/app
     ports:
       - "9002:9002"
     networks:
@@ -44,12 +50,16 @@ services:
       context: ./order
     ports:
       - "9004:9004"
+    volumes:
+      - ./order:/usr/src/app
     networks:
       - duvidas_dividas_network
   rating:
     container_name: rating
     build:
       context: ./rating
+    volumes:
+      - ./rating:/usr/src/app
     ports:
       - "9003:9003"
     networks:
@@ -58,6 +68,8 @@ services:
     container_name: gateway
     build:
       context: ./gateway
+    volumes:
+      - ./gateway:/usr/src/app
     ports:
       - "9007:9007"
     networks:
@@ -66,6 +78,8 @@ services:
     container_name: webapp
     build:
       context: ./web-app
+    volumes:
+      - ./web-app:/usr/src/app
     ports:
       - "9005:9005"
     networks:

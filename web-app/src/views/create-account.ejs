@@ -1,0 +1,33 @@
+<%- include('templates/header',{ title:'Criar conta' })%>
+<div class="container">
+    <div class="card">
+        <form id="login-form" class="bg-light p-4 rounded shadow">
+            <a href="/">
+                <img src="/img/header-dashboard.png" class="logo" alt="Logo">
+            </a>
+            <div class="form-group">
+                <input type="text" id="email" name="email" class="form-control" placeholder="e-mail" required>
+            </div>
+            <div class="form-group mb-3">
+                <input type="password" id="password" name="password" class="form-control" placeholder="senha" required>
+            </div>
+            <div class="form-group mb-3">
+                <input type="text" id="name" name="name" class="form-control" placeholder="nome" required>
+            </div>
+            <div class="form-group mb-3">
+                <input type="text" id="telephone" name="telephone" class="form-control" placeholder="telefone" required>
+            </div>
+            <div class="form-group mb-3">
+                <input type="text" id="cpf" name="cpf" class="form-control" placeholder="cpf" required>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-success form-control" id="btn-create-account">criar conta</button>
+            </div>
+            <div class="form-group">
+                <a type="button" href="/login" class="btn btn-link form-control">voltar</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<%- include('templates/footer') %>

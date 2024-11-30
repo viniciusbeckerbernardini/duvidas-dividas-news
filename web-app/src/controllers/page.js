@@ -4,6 +4,10 @@ class PageController {
     res.render('login');
   };
 
+  static createAccount = async (req, res) => {
+        res.render('create-account');
+  };
+
   static home = async (req, res) => {
     const routePath = req.route.path;
     res.render(

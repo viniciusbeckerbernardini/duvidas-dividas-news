@@ -22,6 +22,7 @@ const logoutUser = (req, res) => {
 pageRouter
     .get('/', PageController.home)
     .get('/login', PageController.login)
+    .get('/create-account', PageController.createAccount)
     .get('/logout', logoutUser)
     .get('/product/detail/:id', PageController.productDetail)
     .get('/cart', PageController.cart)
