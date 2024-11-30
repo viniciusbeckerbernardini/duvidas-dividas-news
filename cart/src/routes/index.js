@@ -1,6 +1,6 @@
-import ordersRouter from "./api/orders.js";
+import cartsRouter from "./api/carts.js";
 const routers = {
-  ordersRouter
+  cartsRouter
 };
 
 export default routers;
