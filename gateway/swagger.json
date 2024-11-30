@@ -27,6 +27,9 @@
   "paths": {
     "/api/user/login": {
       "post": {
+        "tags": [
+          "auth"
+        ],
         "summary": "Realiza o login de um usuário",
         "requestBody": {
           "required": true,
@@ -81,6 +84,9 @@
     },
     "/api/user/me": {
       "get": {
+        "tags": [
+          "auth"
+        ],
         "summary": "Obtém as informações do usuário logado",
         "responses": {
           "200": {
@@ -125,6 +131,9 @@
     },
     "/api/user/create-user": {
       "post": {
+        "tags": [
+          "auth"
+        ],
         "summary": "Cria um novo usuário",
         "requestBody": {
           "required": true,
@@ -210,9 +219,58 @@
         }
       }
     },
-    "/api/orders/create": {
+    "/api/carts/get": {
+      "get": {
+        "tags": [
+          "cart"
+        ],
+        "summary": "Retorna o carrinho do usuário",
+        "operationId": "getCart",
+        "responses": {
+          "200": {
+            "description": "Carrinho recuperado com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "cart": {
+                      "type": "object",
+                      "properties": {
+                        "_id": {
+                          "type": "string"
+                        },
+                        "products": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "productId": {
+                                "type": "string"
+                              },
+                              "quantity": {
+                                "type": "integer"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/carts/add-product": {
       "post": {
-        "summary": "Cria um novo pedido",
+        "tags": [
+          "cart"
+        ],
+        "summary": "Adiciona um produto ao carrinho",
+        "operationId": "addProductToCart",
         "requestBody": {
           "required": true,
           "content": {
@@ -220,140 +278,40 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "products": {
-                    "type": "array",
-                    "items": {
-                      "type": "object",
-                      "properties": {
-                        "isbn": {
-                          "type": "string"
-                        },
-                        "quantity": {
-                          "type": "integer"
-                        },
-                        "price": {
-                          "type": "string"
-                        }
-                      }
-                    }
-                  },
-                  "cost": {
+                  "productId": {
                     "type": "string"
                   },
-                  "sendCost": {
-                    "type": "string"
-                  },
-                  "sendAddress": {
-                    "type": "object",
-                    "properties": {
-                      "street": {
-                        "type": "string"
-                      },
-                      "city": {
-                        "type": "string"
-                      },
-                      "state": {
-                        "type": "string"
-                      },
-                      "zip": {
-                        "type": "string"
-                      }
-                    }
-                  },
-                  "paymentMethod": {
-                    "type": "string"
+                  "quantity": {
+                    "type": "integer"
                   }
                 },
-                "example": {
-                  "products": [
-                    { "isbn": "978-1-00-121350-2", "quantity": 1, "price": "100.00" },
-                    { "isbn": "978-4-17-158920-4", "quantity": 3, "price": "350.00" }
-                  ],
-                  "cost": "115.00",
-                  "sendCost": "9.00",
-                  "sendAddress": {
-                    "street": "rua rio solimões",
-                    "city": "Guarapari",
-                    "state": "SC",
-                    "zip": "95577441"
-                  },
-                  "paymentMethod": "boleto"
-                }
+                "required": ["productId", "quantity"]
               }
             }
           }
         },
         "responses": {
           "200": {
-            "description": "Pedido criado com sucesso",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "products": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "isbn": {
-                            "type": "string"
-                          },
-                          "quantity": {
-                            "type": "integer"
-                          },
-                          "price": {
-                            "type": "string"
-                          }
-                        }
-                      }
-                    },
-                    "cost": {
-                      "type": "string"
-                    },
-                    "sendCost": {
-                      "type": "string"
-                    },
-                    "sendAddress": {
-                      "type": "object",
-                      "properties": {
-                        "street": {
-                          "type": "string"
-                        },
-                        "city": {
-                          "type": "string"
-                        },
-                        "state": {
-                          "type": "string"
-                        },
-                        "zip": {
-                          "type": "string"
-                        }
-                      }
-                    },
-                    "paymentMethod": {
-                      "type": "string"
-                    }
-                  }
-                }
-              }
-            }
+            "description": "Produto adicionado ao carrinho com sucesso"
           },
-          "500": {
-            "description": "Erro crítico"
+          "400": {
+            "description": "Erro na solicitação"
           }
         }
       }
     },
-    "/api/orders/{orderId}": {
-      "get": {
-        "summary": "Obtém detalhes de um pedido",
+    "/api/carts/remove-product": {
+      "delete": {
+        "tags": [
+          "cart"
+        ],
+        "summary": "Remove um produto do carrinho",
+        "operationId": "removeProductFromCart",
         "parameters": [
           {
-            "name": "orderId",
-            "in": "path",
+            "name": "productId",
+            "in": "query",
             "required": true,
-            "description": "ID do pedido",
             "schema": {
               "type": "string"
             }
@@ -361,32 +319,401 @@
         ],
         "responses": {
           "200": {
-            "description": "Detalhes do pedido",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "orderId": {
-                      "type": "string"
-                    },
-                    "status": {
-                      "type": "string"
-                    }
-                  },
-                  "example": {
-                    "orderId": "60d5f821d47b33a5c1bd5d6f",
-                    "status": "Em processamento"
+            "description": "Produto removido do carrinho com sucesso"
+          },
+          "400": {
+            "description": "Erro na solicitação"
+          }
+        }
+      }
+    },
+    "/api/catalog/list": {
+      "get": {
+        "tags": [
+          "catalog"
+        ],
+        "summary": "List all catalog items",
+        "security": [
+          {
+            "BearerToken": []
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "List of catalog items",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "catalog": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/Book"
                   }
                 }
               }
             }
           },
           "500": {
-            "description": "Erro crítico"
+            "description": "Critical error"
+          }
+        }
+      }
+    },
+    "/api/catalog/find/{isbn}": {
+      "get": {
+        "tags": [
+          "catalog"
+        ],
+        "summary": "Find a book by ISBN",
+        "security": [
+          {
+            "BearerToken": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "isbn",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Book found",
+            "schema": {
+              "$ref": "#/definitions/Book"
+            }
           },
           "404": {
-            "description": "Pedido não encontrado"
+            "description": "Book not found"
+          },
+          "500": {
+            "description": "Critical error"
+          }
+        }
+      }
+    },
+    "/api/orders/list": {
+      "get": {
+        "tags": [
+          "orders"
+        ],
+        "summary": "List all orders",
+        "security": [
+          {
+            "BearerToken": []
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "List of orders",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "orders": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/Order"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Critical error"
+          }
+        }
+      }
+    },
+    "/api/orders/find/{orderId}": {
+      "get": {
+        "tags": [
+          "orders"
+        ],
+        "summary": "Find an order by ID",
+        "security": [
+          {
+            "BearerToken": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "orderId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Order found",
+            "schema": {
+              "$ref": "#/definitions/Order"
+            }
+          },
+          "404": {
+            "description": "Order not found"
+          },
+          "500": {
+            "description": "Critical error"
+          }
+        }
+      }
+    },
+    "/api/orders/create": {
+      "post": {
+        "tags": [
+          "orders"
+        ],
+        "summary": "Create a new order",
+        "security": [
+          {
+            "BearerToken": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/OrderRequest"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Order created",
+            "schema": {
+              "$ref": "#/definitions/Order"
+            }
+          },
+          "500": {
+            "description": "Critical error"
+          }
+        }
+      }
+    },
+    "/api/orders/confirm-delivery": {
+      "put": {
+        "tags": [
+          "orders"
+        ],
+        "summary": "Confirm order delivery",
+        "security": [
+          {
+            "BearerToken": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/OrderId"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Delivery confirmed",
+            "schema": {
+              "type": "integer",
+              "example": 1
+            }
+          },
+          "500": {
+            "description": "Critical error"
+          }
+        }
+      }
+    },
+    "/api/orders/cancel-order": {
+      "put": {
+        "tags": [
+          "orders"
+        ],
+        "summary": "Cancel an order",
+        "security": [
+          {
+            "BearerToken": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/OrderId"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Order canceled",
+            "schema": {
+              "type": "integer",
+              "example": 1
+            }
+          },
+          "500": {
+            "description": "Critical error"
+          }
+        }
+      }
+    },
+    "/api/rating/list/{isbn}": {
+      "get": {
+        "tags": [
+          "rating"
+        ],
+        "summary": "List ratings for a book",
+        "security": [
+          {
+            "BearerToken": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "isbn",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "List of ratings",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "ratings": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/Rating"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Critical error"
+          }
+        }
+      }
+    },
+    "/api/rating/find/{isbn}": {
+      "get": {
+        "tags": [
+          "rating"
+        ],
+        "summary": "Find a rating for a book",
+        "security": [
+          {
+            "BearerToken": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "isbn",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Rating found",
+            "schema": {
+              "$ref": "#/definitions/Rating"
+            }
+          },
+          "404": {
+            "description": "Rating not found"
+          },
+          "500": {
+            "description": "Critical error"
+          }
+        }
+      }
+    },
+    "/api/rating/create": {
+      "post": {
+        "tags": [
+          "rating"
+        ],
+        "summary": "Create a new rating",
+        "security": [
+          {
+            "BearerToken": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/RatingRequest"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Rating created",
+            "schema": {
+              "$ref": "#/definitions/Rating"
+            }
+          },
+          "500": {
+            "description": "Critical error"
+          }
+        }
+      }
+    },
+    "/api/rating/delete/{isbn}": {
+      "delete": {
+        "tags": [
+          "rating"
+        ],
+        "summary": "Delete a rating",
+        "security": [
+          {
+            "BearerToken": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "isbn",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Rating deleted",
+            "schema": {
+              "type": "integer",
+              "example": 1
+            }
+          },
+          "500": {
+            "description": "Critical error"
           }
         }
       }
