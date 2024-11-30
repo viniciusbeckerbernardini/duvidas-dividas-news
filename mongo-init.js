@@ -183,7 +183,6 @@ db.catalogs.insertMany([
      }
 ]);
 
-
 //Ratings
 db.ratings.drop();
 db.ratings.insertMany([
@@ -224,6 +223,7 @@ db.ratings.insertMany([
   }
 ]);
 
+//Orders
 db.orders.drop();
 db.orders.insertMany([
   {
@@ -319,5 +319,28 @@ db.orders.insertMany([
     "paymentMethod": "credit card",
     "dateCreated": "2023-10-19T14:00:00.000Z",
     "dateUpdated": null
+  }
+]);
+
+//Users
+db.users.drop();
+db.users.insertMany([
+  {
+    "_id": {"$oid": "671e741fcb79a1ef91e9d292"},
+    "__v": 0,
+    "cpf": "4114107940",
+    "dateCreated": {"$date": "2024-10-27T17:10:55.209Z"},
+    "email": "vbkmma@gmail.com",
+    "name": "Vini",
+    "password": "$2a$10$SgfOGPNWBRHcA77wcegNG.UeY4NeMtQVCG22sVL5QM2yOy28NXoVy"
+  },
+  {
+    "_id": {"$oid": "d10e741fcb79a1ef91e9d296"},
+    "__v": 0,
+    "cpf": "4114107941",
+    "dateCreated": {"$date": "2024-10-27T17:10:55.209Z"},
+    "email": "teste@gmail.com",
+    "name": "Teste 2",
+    "password": "$2a$10$SgfOGPNWBRHcA77wcegNG.UeY4NeMtQVCG22sVL5QM2yOy28NXoVy"
   }
 ]);
