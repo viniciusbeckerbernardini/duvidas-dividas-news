@@ -1,6 +1,7 @@
 import cartsRouter from "./api/carts.js";
+// Defines what routes we are going to set
 const routers = {
-  cartsRouter
+  cartsRouter,
 };
 
 export default routers;

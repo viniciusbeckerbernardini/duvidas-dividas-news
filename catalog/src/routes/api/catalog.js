@@ -1,6 +1,8 @@
 import { Router } from 'express';
 import CatalogController from "../../controllers/catalog.js";
-
+/*
+* Define the microservice routes
+*/
 const catalogRouter = Router();
 
 catalogRouter

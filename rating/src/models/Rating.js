@@ -1,5 +1,7 @@
 import mongoose from 'mongoose';
-
+/*
+* Rating Model defines the properties of the collection
+*/
 const RatingSchema = new mongoose.Schema({
   rating: {
     type: Intl,

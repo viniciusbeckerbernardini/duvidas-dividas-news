@@ -1,7 +1,10 @@
 import Cart from '../models/Cart.js';
 
 class CartController {
-
+  /*
+  * User controller class is used to set the responses for the https
+  * requests of the routes/api/carts.js
+  */
   static get = async (req,res) => {
     try {
       const {userId} = req.user;

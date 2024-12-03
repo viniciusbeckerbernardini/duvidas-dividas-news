@@ -48,7 +48,7 @@ Diagrama da arquitetura:
 ## Documentação da API
 
 A documentação das APIs está disponível localmente no seguinte endereço:  
-[http://localhost:9007/api_docs](http://localhost:9007/api_docs)
+[http://localhost:9007/api-docs](http://localhost:9007/api-docs)
 
 ---
 

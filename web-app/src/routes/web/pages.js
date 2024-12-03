@@ -4,14 +4,9 @@ import '../../strategies/strategy-autentification.js';
 import PageController from '../../controllers/page.js';
 
 const pageRouter = Router();
-
-const authenticateSession = (req, res, next) => {
-  if (req.session.user !== undefined) {
-    return next();
-  }
-  res.redirect('/login');
-  return false;
-};
+/*
+* Define the web-app routes
+*/
 
 const logoutUser = (req, res) => {
   req.session.destroy();

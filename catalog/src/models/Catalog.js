@@ -1,5 +1,7 @@
 import mongoose from 'mongoose';
-
+/*
+* Cart Model defines the properties of the collection
+*/
 const CatalogSchema = new mongoose.Schema({
   ISBN: {
     type: String,

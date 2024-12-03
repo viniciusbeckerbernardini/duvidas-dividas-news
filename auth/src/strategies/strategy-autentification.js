@@ -3,6 +3,10 @@ import BearerStrategy from 'passport-http-bearer';
 import jwt from 'jsonwebtoken';
 import User from '../models/User.js';
 
+/*
+* Defines how passport will handle with requests, and what he will return
+* to application procedure
+*/
 passport.use(
   new BearerStrategy(async (token, done) => {
     try {

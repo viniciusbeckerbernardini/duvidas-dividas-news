@@ -1,5 +1,7 @@
 import mongoose from 'mongoose';
-
+/*
+* Order Model defines the properties of the collection
+*/
 const OrderSchema = new mongoose.Schema({
   products: {
     type: Array,

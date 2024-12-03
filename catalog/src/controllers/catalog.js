@@ -1,7 +1,10 @@
 import Catalog from "../models/Catalog.js";
 
 class CatalogController {
-
+  /*
+  * User controller class is used to set the responses for the https
+  * requests of the routes/api/catalogs.js
+  */
   static list = async (req,res) => {
     try {
       const catalog = await Catalog.find();

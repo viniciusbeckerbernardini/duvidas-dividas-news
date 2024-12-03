@@ -1,6 +1,10 @@
 import mongoose from 'mongoose';
 import bcryptjs from 'bcryptjs';
 
+/*
+* User Model defines the properties of the collection user and condition
+* when some operation like save is made
+*/
 const UserSchema = new mongoose.Schema({
   name: {
     type: String,
@@ -19,7 +23,7 @@ const UserSchema = new mongoose.Schema({
   cpf: {
     type: String,
     unique: true,
-  }
+  },
 });
 
 UserSchema.pre('save', async function encriptPassword(_next) {

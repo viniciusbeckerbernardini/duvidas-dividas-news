@@ -3,6 +3,11 @@ import User from '../models/User.js';
 import generateToken from '../helpers/generate-token.js';
 
 class UserController {
+  /*
+  * User controller class is used to set the responses for the https
+  * requests of the routes/api/users.js
+  */
+
   static getUser = async (req, res) => {
     try {
       const { userId } = req.user;

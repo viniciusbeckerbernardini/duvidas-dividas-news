@@ -1,7 +1,10 @@
 import Order from '../models/Order.js';
 
 class OrderController {
-
+  /*
+  * User controller class is used to set the responses for the https
+  * requests of the routes/api/orders.js
+  */
   static get = async (req,res) => {
     try {
       const {orderId} = req.params;

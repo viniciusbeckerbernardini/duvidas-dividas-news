@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-
+// Here we stablish the database connection
 const connectDataBase = () => {
   console.log('Wait connecting to the database');
 

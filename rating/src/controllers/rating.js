@@ -4,7 +4,10 @@ import generateToken from '../helpers/generate-token.js';
 import User from "../models/User.js";
 
 class RatingController {
-
+  /*
+  * User controller class is used to set the responses for the https
+  * requests of the routes/api/ratings.js
+  */
   static get = async (req,res) => {
     try {
       const {isbn} = req.params;
