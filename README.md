@@ -50,6 +50,8 @@ Diagrama da arquitetura:
 A documentação das APIs está disponível no formato OpenApi localmente no seguinte endereço:  
 [http://localhost:9007/api-docs](http://localhost:9007/api-docs)
 
+![Swagger OpenApi](https://i.ibb.co/Y7LvqFm/image.png)
+
 ---
 
 ### Sobre o Projeto
